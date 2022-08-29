@@ -401,16 +401,36 @@
 </div>
 </section>
 
-<section>
 <section id="agenda" class="title-slide slide level2 center">
 <h2>Agenda</h2>
 <p>Hello agenda!</p>
 </section>
-<section class="slide level3">
 
-<p>R itself is not an automation tool. Rather, it interfaces with other purpose built tools.</p>
+<section id="why-learn-automation" class="title-slide slide level2 smaller center">
+<h2>Why learn automation?</h2>
+<p>Automation is the logical extension of coding.</p>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Given that you have some operation.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><u>Step 1: Re-write in code</u></p>
+<ul>
+<li>Pain: Learn to code</li>
+<li>Gain: Can then re-run at zero effort (among other things)</li>
+</ul>
+</div>
+<div class="fragment">
+<p><u>Step 2: Automate</u></p>
+<ul>
+<li>Pain: Learn an automation tool</li>
+<li>Gain: Can then re-run at zero effort <strong>even when you are not there</strong></li>
+</ul>
 <aside class="notes">
-<p>No programming language is actually an automation tool.</p>
+<p>I see automation as the logical extension of coding.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -422,27 +442,91 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section></section>
-<section id="cron" class="title-slide slide level2 center">
-<h2>Cron</h2>
-<blockquote>
-<p>In the beginning God created the heavens and the earth … but also the Cron utility for Unix.</p>
-</blockquote>
-<p>Cron is the lingua franca of automation.</p>
-<ul>
-<li>It’s been</li>
-<li>If you are running MacOS or Linux, it’s likely already on your computer.</li>
-<li>One</li>
-<li>Two</li>
-<li>Three</li>
-<li>Four</li>
-<li>Five</li>
-<li>Six</li>
-</ul>
+</div>
 </section>
 
-<section id="cron-expressions" class="title-slide slide level2 center">
-<h2>Cron expressions<sup>1</sup></h2>
+<section id="how-can-you-automate" class="title-slide slide level2 smaller center">
+<h2>How can you automate?</h2>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>R itself is not an automation tool. Rather, it interfaces with other purpose-built tools.</p>
+</div>
+</div>
+</div>
+<ul>
+<li>Cron</li>
+<li>Apache Airflow</li>
+<li>Windows Task Scheduler</li>
+<li>RStudio Connect</li>
+<li>Jenkins</li>
+<li>Many more…</li>
+</ul>
+<aside class="notes">
+<p>No programming language is actually an automation tool.</p>
+<p>To have an automation tool, you need an always on server with a daemon running in the background.</p>
+<p>I’m betting that for many of you, automation is something hidden away, mysterious.</p>
+<p>Varying levels of maturity and sophistication.</p>
+<p>These each have their pros and cons.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+
+<section id="cron" class="title-slide slide level2 smaller center">
+<h2>Cron</h2>
+<blockquote>
+<p>In the beginning God created the heavens and the earth … but also the Cron utility for Unix.<sup>1</sup></p>
+</blockquote>
+<div class="fragment">
+<ul>
+<li>Cron is the lingua franca of automation.
+<ul>
+<li>Other utilities will accept Cron syntax.</li>
+</ul></li>
+<li>Very old, widely used and well understood.
+<ul>
+<li>If you are running MacOS or Linux, it’s likely already on your computer.</li>
+</ul></li>
+<li>Minimal and easy to get started with.
+<ul>
+<li>Command line based.</li>
+</ul></li>
+</ul>
+<p><br></p>
+<aside class="notes">
+<p>I think Cron is a good tool to get started with.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Gospel according to James.</p></li></ol></aside></section>
+
+<section id="cron-expressions" class="title-slide slide level2 smaller center">
+<h2>Cron expressions</h2>
+<p>Cron has it’s own syntax for job frequency and schedule.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a>* * * * *</span>
 <span id="cb1-2"><a href="#cb1-2"></a>| | | | |</span>
 <span id="cb1-3"><a href="#cb1-3"></a>| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)</span>
@@ -450,15 +534,34 @@
 <span id="cb1-5"><a href="#cb1-5"></a>| | +-------- Day of the Month  (range: 1-31)</span>
 <span id="cb1-6"><a href="#cb1-6"></a>| +---------- Hour              (range: 0-23)</span>
 <span id="cb1-7"><a href="#cb1-7"></a>+------------ Minute            (range: 0-59)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example<sup>1</sup></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a>0 0 * * * echo 'Hello midnight!'</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="ss">* </span>* * * * Rscript -e 'print("Hello R!")'</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="ss">* </span>* * * * python -c 'print("Hello Python!")'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Maybe something.</p>
+<p><br></p>
+<aside class="notes">
+<p>I can’t really teach you all of it here.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Adapted from: https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/</p></li></ol></aside></section>
+
+<section id="thank-you" class="title-slide slide level1 center" style="text-align: center;">
+<h1>Thank you!</h1>
+<p>Questions?</p>
+</section>
+
 <div class="footer footer-default">
 
 </div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Adapted from: https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/</p></li></ol></aside></section>
-
 
     </div>
   </div>

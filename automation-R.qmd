@@ -30,32 +30,88 @@ options(crayon.enabled=TRUE)
 
 Hello agenda!
 
----
+## Why learn automation? {.smaller}
 
-R itself is not an automation tool. Rather, it interfaces with other purpose 
-built tools.
+Automation is the logical extension of coding.
+
+
+:::{.callout-note icon=false appearance="minimal"}
+Given that you have some operation.
+:::
+
+. . .
+
+<u>Step 1: Re-write in code</u>
+
+- Pain: Learn to code
+- Gain: Can then re-run at zero effort (among other things)
+
+. . .
+
+<u>Step 2: Automate</u>
+
+- Pain: Learn an automation tool
+- Gain: Can then re-run at zero effort **even when you are not there**
+
+::: {.notes}
+I see automation as the logical extension of coding.
+:::
+
+## How can you automate? {.smaller}
+
+:::{.callout-note}
+R itself is not an automation tool. 
+Rather, it interfaces with other purpose-built tools.
+:::
+
+- Cron
+- Apache Airflow
+- Windows Task Scheduler
+- RStudio Connect
+- Jenkins
+- Many more...
+
 
 ::: {.notes}
 No programming language is actually an automation tool.
+
+To have an automation tool, you need an always on server with a daemon running in the background.
+
+I'm betting that for many of you, automation is something hidden away, mysterious.
+
+Varying levels of maturity and sophistication.
+
+These each have their pros and cons.
 :::
 
 
-## Cron
+## Cron {.smaller}
 
-> In the beginning God created the heavens and the earth ... but also the Cron utility for Unix.
 
-Cron is the lingua franca of automation.
+> In the beginning God created the heavens and the earth ... but also the Cron utility for Unix.^[Gospel according to James.]
 
-- It's been 
-- If you are running MacOS or Linux, it's likely already on your computer.
-- One
-- Two
-- Three
-- Four
-- Five
-- Six
+. . .
 
-## Cron expressions^[Adapted from: https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/]
+- Cron is the lingua franca of automation.
+  - Other utilities will accept Cron syntax.
+- Very old, widely used and well understood.
+  - If you are running MacOS or Linux, it's likely already on your computer.
+- Minimal and easy to get started with.
+  - Command line based.
+
+<br>
+
+::: {.notes}
+I think Cron is a good tool to get started with.
+:::
+
+
+
+## Cron expressions {.smaller}
+
+Cron has it's own syntax for job frequency and schedule.
+
+
 
 ```markdown
 * * * * *
@@ -66,10 +122,21 @@ Cron is the lingua franca of automation.
 | +---------- Hour              (range: 0-23)
 +------------ Minute            (range: 0-59)
 ```
+Example^[Adapted from: https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/]
 ```markdown
 0 0 * * * echo 'Hello midnight!'
 * * * * * Rscript -e 'print("Hello R!")'
 * * * * * python -c 'print("Hello Python!")'
 ```
 
+<br>
 
+::: {.notes}
+I can't really teach you all of it here.
+:::
+
+:::{style="text-align: center;"}
+# Thank you! 
+
+Questions?
+:::
