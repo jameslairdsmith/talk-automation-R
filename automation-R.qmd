@@ -9,6 +9,7 @@ format:
       echo: true
       warning: false
     output-file: index.html
+    show-notes: false
 ---
 
 ## Automating tasks with R {style="margin-top: 0em;"}
