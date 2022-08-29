@@ -1,0 +1,74 @@
+---
+format:
+  revealjs: 
+    slide-number: true
+    css: styles.css
+    slide-level: 3
+    mouse-wheel: true
+    execute:
+      echo: true
+      warning: false
+    output-file: index.html
+---
+
+## Automating tasks with R {style="margin-top: 0em;"}
+
+> James Laird-Smith
+```{r}
+#| include: false
+old.hooks <- fansi::set_knit_hooks(knitr::knit_hooks)
+options(crayon.enabled=TRUE)
+```
+
+::: {style="margin-top: 2em; margin-bottom: 1em; font-size: 0.75em;"}
+- Link to slides: [talk-automation-R.jameslairdsmith.com/](https://talk-automation-R.jameslairdsmith.com/)
+- Github repo for talk: [jameslairdsmith/talk-automation-R](https://github.com/jameslairdsmith/talk-automation-R)
+:::
+
+## Agenda
+
+Hello agenda!
+
+---
+
+R itself is not an automation tool. Rather, it interfaces with other purpose 
+built tools.
+
+::: {.notes}
+No programming language is actually an automation tool.
+:::
+
+
+## Cron
+
+> In the beginning God created the heavens and the earth ... but also the Cron utility for Unix.
+
+Cron is the lingua franca of automation.
+
+- It's been 
+- If you are running MacOS or Linux, it's likely already on your computer.
+- One
+- Two
+- Three
+- Four
+- Five
+- Six
+
+## Cron expressions
+
+```markdown
+* * * * *
+| | | | |
+| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)
+| | | +------ Month of the Year (range: 1-12)
+| | +-------- Day of the Month  (range: 1-31)
+| +---------- Hour              (range: 0-23)
++------------ Minute            (range: 0-59)
+```
+```markdown
+0 0 * * * echo 'Hello midnight!'
+* * * * * Rscript -e 'print("Hello R!")'
+* * * * * python -c 'print("Hello Python!")'
+```
+
+Adapted from: https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/
