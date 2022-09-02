@@ -388,17 +388,23 @@
     <div class="slides">
 
 
-<section id="automating-tasks-with-r" class="title-slide slide level2 center" style="margin-top: 0em;">
+<section id="automating-tasks-with-r" class="title-slide slide level2 center" style="margin-top: 2em;">
 <h2>Automating tasks with R</h2>
-<blockquote>
+<div style="margin-bottom: 1em; font-size: 0.75em">
 <p>James Laird-Smith</p>
-</blockquote>
-<div style="margin-top: 2em; margin-bottom: 1em; font-size: 0.75em;">
+<p>Data Scientist, Bank of England</p>
+</div>
+<!-- ::: {style="margin-top: 8em; margin-bottom: 1em; font-size: 0.5em; color: grey"} -->
+<!-- - Link to slides: [talk-automation-R.jameslairdsmith.com/](https://talk-automation-R.jameslairdsmith.com/) -->
+<!-- - Github repo for talk: [jameslairdsmith/talk-automation-R](https://github.com/jameslairdsmith/talk-automation-R) -->
+<!-- ::: -->
+<div style="font-size:0.5em">
 <ul>
 <li>Link to slides: <a href="https://talk-automation-R.jameslairdsmith.com/">talk-automation-R.jameslairdsmith.com/</a></li>
 <li>Github repo for talk: <a href="https://github.com/jameslairdsmith/talk-automation-R">jameslairdsmith/talk-automation-R</a></li>
 </ul>
 </div>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Bank_of_England_logo.svg/400px-Bank_of_England_logo.svg.png?20220630040920" class="absolute" style="top: 150px; right: 150px; width: 300px; height: 300px; "></p>
 </section>
 
 <section id="agenda" class="title-slide slide level2 center">
@@ -493,6 +499,24 @@
       }</style></aside>
 </section>
 
+<section id="what-would-an-ideal-automation-tool-look-like" class="title-slide slide level2 smaller center">
+<h2>What would an ideal automation tool look like?</h2>
+<ul>
+<li>Simple to use.</li>
+<li>Feature rich.
+<ul>
+<li>Triggers (or listeners).</li>
+</ul></li>
+<li>Strong visualisation.</li>
+<li>Language agnostic? Or at least work with R?</li>
+<li>Free and open source with no vendor lock-in.</li>
+<li>Developer friendly.
+<ul>
+<li>Have an API.</li>
+</ul></li>
+</ul>
+</section>
+
 <section id="cron" class="title-slide slide level2 smaller center">
 <h2>Cron</h2>
 <blockquote>
@@ -545,7 +569,7 @@
 <span id="cb2-5"><a href="#cb2-5"></a><span class="ss">* </span>* * * * Rscript -e 'print("Hello R!")'</span>
 <span id="cb2-6"><a href="#cb2-6"></a><span class="ss">* </span>* * * * python -c 'print("Hello Python!")'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Cron’s syntax is richer than this.</p>
-<p><br> <br></p>
+<p><br> <br> <br></p>
 
 <aside class="notes">
 <p>This is a simplified version. Cron has a richer syntax than this.</p>
@@ -567,8 +591,8 @@
 
 <section id="existing-tools-r" class="title-slide slide level2 smaller center">
 <h2>Existing tools: R</h2>
-<div class="fragment">
 <p>cronR, origionally by Kevin Ushey, but maintained by Jan Wijffels.</p>
+<div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(cronR)</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
@@ -610,16 +634,21 @@
 </div>
 </section>
 
-<section id="existing-tools-apache-airflow" class="title-slide slide level2 center">
+<section id="existing-tools-apache-airflow" class="title-slide slide level2 smaller center">
 <h2>Existing tools: Apache Airflow</h2>
 <ul>
 <li>Perhaps the most mature and well understood automation tool.</li>
-<li>Started by Airbnb.</li>
-<li>Structured around Directed Acyclic Graphs (DAGs)</li>
+<li>Started by Airbnb. Open source and with a community of developers.</li>
+<li>Structured around Directed Acyclic Graphs (DAGs).</li>
 <li>GUI capabilities.</li>
 </ul>
+<div style="text-align: center;">
+<p><img data-src="airflow-image.png"></p>
+</div>
 
-<img data-src="airflow-image.png" class="r-stretch"></section>
+<aside><div>
+<p>Image source: <a href="https://pypi.org/project/apache-airflow/">https://pypi.org/project/apache-airflow/</a></p>
+</div></aside></section>
 
 <section id="existing-tools-apache-airflow-2" class="title-slide slide level2 smaller center">
 <h2>Existing tools: Apache Airflow (2)</h2>
@@ -663,6 +692,22 @@
 <aside><div>
 <p>Adapted from: <a href="https://progressivecoder.com/airflow-dag-example-create-your-first-dag/">https://progressivecoder.com/airflow-dag-example-create-your-first-dag/</a></p>
 </div></aside></section>
+
+<section id="existing-tools-others" class="title-slide slide level2 center">
+<h2>Existing tools: Others</h2>
+<ul>
+<li>Windows Task Scheduler
+<ul>
+<li>Seems heavily tied into Windows.</li>
+</ul></li>
+<li>RStudio Connect
+<ul>
+<li>Useful, but seemed clunky.</li>
+<li>Good at managing R dependencies.</li>
+<li>Still very GUI based.</li>
+</ul></li>
+</ul>
+</section>
 
 <section id="demo-time" class="title-slide slide level1 center" style="text-align: center;">
 <h1>Demo time!</h1>

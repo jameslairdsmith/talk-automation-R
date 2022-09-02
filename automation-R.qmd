@@ -12,19 +12,31 @@ format:
     show-notes: false
 ---
 
-## Automating tasks with R {style="margin-top: 0em;"}
+## Automating tasks with R {style="margin-top: 2em;"}
 
-> James Laird-Smith
+::: {style="margin-bottom: 1em; font-size: 0.75em"}
+James Laird-Smith
+
+Data Scientist, Bank of England
+:::
+
 ```{r}
 #| include: false
 old.hooks <- fansi::set_knit_hooks(knitr::knit_hooks)
 options(crayon.enabled=TRUE)
 ```
 
-::: {style="margin-top: 2em; margin-bottom: 1em; font-size: 0.75em;"}
+<!-- ::: {style="margin-top: 8em; margin-bottom: 1em; font-size: 0.5em; color: grey"} -->
+<!-- - Link to slides: [talk-automation-R.jameslairdsmith.com/](https://talk-automation-R.jameslairdsmith.com/) -->
+<!-- - Github repo for talk: [jameslairdsmith/talk-automation-R](https://github.com/jameslairdsmith/talk-automation-R) -->
+<!-- ::: -->
+
+::: {style="font-size:0.5em"}
 - Link to slides: [talk-automation-R.jameslairdsmith.com/](https://talk-automation-R.jameslairdsmith.com/)
 - Github repo for talk: [jameslairdsmith/talk-automation-R](https://github.com/jameslairdsmith/talk-automation-R)
 :::
+
+![](https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Bank_of_England_logo.svg/400px-Bank_of_England_logo.svg.png?20220630040920){.absolute width="300" height="300" right=150 top="150"}
 
 ## Agenda
 
@@ -89,6 +101,17 @@ Varying levels of maturity and sophistication.
 These each have their pros and cons.
 :::
 
+## What would an ideal automation tool look like? {.smaller}
+
+- Simple to use.
+- Feature rich.
+  - Triggers (or listeners).
+- Strong visualisation.
+- Language agnostic? Or at least work with R?
+- Free and open source with no vendor lock-in.
+- Developer friendly.
+  - Have an API.
+
 
 ## Cron {.smaller}
 
@@ -146,6 +169,7 @@ Cron's syntax is richer than this.
 
 <br>
 <br>
+<br>
 
 ::: aside
 Adapted from: [https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/](https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/)
@@ -157,9 +181,9 @@ This is a simplified version. Cron has a richer syntax than this.
 
 ## Existing tools: R {.smaller}
 
-. . .
-
 cronR, origionally by Kevin Ushey, but maintained by Jan Wijffels.
+
+. . .
 
 ```{r eval=TRUE, message=TRUE}
 library(cronR)
@@ -184,14 +208,20 @@ The drawback of this is that it's not friendly to version control.
 I know there are people out there who have tried to program around Cron.
 :::
 
-## Existing tools: Apache Airflow
+## Existing tools: Apache Airflow {.smaller}
 
 - Perhaps the most mature and well understood automation tool.
-- Started by Airbnb.
-- Structured around Directed Acyclic Graphs (DAGs)
+- Started by Airbnb. Open source and with a community of developers.
+- Structured around Directed Acyclic Graphs (DAGs).
 - GUI capabilities.
 
+:::{style="text-align: center;"}
 ![](airflow-image.png)
+:::
+
+::: aside
+Image source: [https://pypi.org/project/apache-airflow/](https://pypi.org/project/apache-airflow/)
+:::
 
 ## Existing tools: Apache Airflow (2)  {.smaller}
 
@@ -230,6 +260,15 @@ Written in Python. You also write DAGs as Python.
 
 You can execute R, but you do so as command line.
 :::
+
+## Existing tools: Others
+
+- Windows Task Scheduler 
+  - Seems heavily tied into Windows.
+- RStudio Connect
+  - Useful, but seemed clunky.
+  - Good at managing R dependencies.
+  - Still very GUI based.
 
 :::{style="text-align: center;"}
 # Demo time! 
