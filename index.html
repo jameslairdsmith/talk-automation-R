@@ -403,7 +403,11 @@
 
 <section id="agenda" class="title-slide slide level2 center">
 <h2>Agenda</h2>
-<p>Hello agenda!</p>
+<ul>
+<li>Value of automation</li>
+<li>Tools</li>
+<li>The future?</li>
+</ul>
 </section>
 
 <section id="why-learn-automation" class="title-slide slide level2 smaller center">
@@ -430,7 +434,7 @@
 <li>Gain: Can then re-run at zero effort <strong>even when you are not there</strong></li>
 </ul>
 <aside class="notes">
-<p>I see automation as the logical extension of coding.</p>
+<p>I see automation as the logical extension of coding. It is particularly important for organisations.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -468,6 +472,7 @@
 <li>Jenkins</li>
 <li>Many more…</li>
 </ul>
+<p><strong>R does have tools for interfacing with these.</strong></p>
 <aside class="notes">
 <p>No programming language is actually an automation tool.</p>
 <p>To have an automation tool, you need an always on server with a daemon running in the background.</p>
@@ -493,14 +498,16 @@
 <p>In the beginning God created the heavens and the earth … but also the Cron utility for Unix.<sup>1</sup></p>
 </blockquote>
 <div class="fragment">
+<div>
 <ul>
-<li>Cron is the lingua franca of automation. Other tools will accept Cron syntax.</li>
-<li>Very old, widely used and well understood.
+<li class="fragment">Cron is the lingua franca of automation. Other tools will accept Cron syntax.</li>
+<li class="fragment">Very old, widely used and well understood.
 <ul>
-<li>If you are running MacOS or Linux, it’s likely already on your computer.</li>
+<li class="fragment">If you are running MacOS or Linux, it’s likely already on your computer.</li>
 </ul></li>
-<li>Minimal and easy to get started with.</li>
+<li class="fragment">Minimal and easy to get started with.</li>
 </ul>
+</div>
 <p><br></p>
 <aside class="notes">
 <p>I think Cron is a good tool to get started with.</p>
@@ -528,6 +535,7 @@
 <span id="cb1-5"><a href="#cb1-5"></a>| | +-------- Day of the Month  (range: 1-31)</span>
 <span id="cb1-6"><a href="#cb1-6"></a>| +---------- Hour              (range: 0-23)</span>
 <span id="cb1-7"><a href="#cb1-7"></a>+------------ Minute            (range: 0-59)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <p>Example:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu"># Comment lines start with hastags</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>0 0 * * * echo 'Hello midnight!'</span>
@@ -535,6 +543,7 @@
 <span id="cb2-4"><a href="#cb2-4"></a>0 0 25 * * echo 'Hello payday!'</span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="ss">* </span>* * * * Rscript -e 'print("Hello R!")'</span>
 <span id="cb2-6"><a href="#cb2-6"></a><span class="ss">* </span>* * * * python -c 'print("Hello Python!")'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cron’s syntax is richer than this.</p>
 <p><br> <br></p>
 
 <aside class="notes">
@@ -550,9 +559,53 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</div>
 <aside><div>
 <p>Adapted from: <a href="https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/">https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/</a></p>
 </div></aside></section>
+
+<section id="existing-tools-r" class="title-slide slide level2 smaller center">
+<h2>Existing tools (R)</h2>
+<div class="fragment">
+<p>cronR, origionally by Kevin Ushey, but forked and maintained by Jan Wijffels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(cronR)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">cron_add</span>(</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">command =</span> <span class="st">"Rscript -e 'print(</span><span class="sc">\"</span><span class="st">Hello R!</span><span class="sc">\"</span><span class="st">)'"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">frequency =</span> <span class="st">'minutely'</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="at">id =</span> <span class="st">'test1'</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="at">description =</span> <span class="st">'My Hello R script'</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="at">tags =</span> <span class="fu">c</span>(<span class="st">'lab'</span>, <span class="st">'xyz'</span>),</span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="at">dry_run =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="at">ask =</span> <span class="cn">FALSE</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Adding cronjob:
+---------------
+
+## cronR job
+## id:   test1
+## tags: lab, xyz
+## desc: My Hello R script
+0-59 * * * * Rscript -e 'print("Hello R!")'</code></pre>
+</div>
+</div>
+<aside class="notes">
+<p>There is something similar for Windows with taskscheduleR, also by Jan Wijffels.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
 
 <section id="thank-you" class="title-slide slide level1 center" style="text-align: center;">
 <h1>Thank you!</h1>

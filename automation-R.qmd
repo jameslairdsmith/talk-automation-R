@@ -28,7 +28,9 @@ options(crayon.enabled=TRUE)
 
 ## Agenda
 
-Hello agenda!
+- Value of automation
+- Tools
+- The future?
 
 ## Why learn automation? {.smaller}
 
@@ -55,6 +57,7 @@ Given that you have some operation.
 
 ::: {.notes}
 I see automation as the logical extension of coding.
+It is particularly important for organisations.
 :::
 
 ## How can you automate? {.smaller}
@@ -71,6 +74,7 @@ Rather, it interfaces with other purpose-built tools.
 - Jenkins
 - Many more...
 
+**R does have tools for interfacing with these.**
 
 ::: {.notes}
 No programming language is actually an automation tool.
@@ -92,10 +96,12 @@ These each have their pros and cons.
 
 . . .
 
+::: {.incremental}
 - Cron is the lingua franca of automation. Other tools will accept Cron syntax.
 - Very old, widely used and well understood.
   - If you are running MacOS or Linux, it's likely already on your computer.
 - Minimal and easy to get started with.
+:::
 
 <br>
 
@@ -120,6 +126,8 @@ Cron has it's own syntax for job frequency and schedule.
 | +---------- Hour              (range: 0-23)
 +------------ Minute            (range: 0-59)
 ```
+. . .
+
 Example:
 ```markdown
 # Comment lines start with hastags
@@ -130,6 +138,9 @@ Example:
 * * * * * python -c 'print("Hello Python!")'
 ```
 
+Cron's syntax is richer than this.
+
+
 <br>
 <br>
 
@@ -139,6 +150,31 @@ Adapted from: [https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/](
 
 ::: {.notes}
 This is a simplified version. Cron has a richer syntax than this.
+:::
+
+## Existing tools (R) {.smaller}
+
+. . .
+
+cronR, origionally by Kevin Ushey, but forked and maintained by Jan Wijffels.
+
+```{r eval=TRUE, message=TRUE}
+library(cronR)
+
+cron_add(
+  command = "Rscript -e 'print(\"Hello R!\")'",
+  frequency = 'minutely',
+  id = 'test1',
+  description = 'My Hello R script',
+  tags = c('lab', 'xyz'),
+  dry_run = TRUE,
+  ask = FALSE
+)
+```
+
+
+::: {.notes}
+There is something similar for Windows with taskscheduleR, also by Jan Wijffels.
 :::
 
 :::{style="text-align: center;"}
