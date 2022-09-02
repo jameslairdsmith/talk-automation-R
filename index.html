@@ -494,18 +494,12 @@
 </blockquote>
 <div class="fragment">
 <ul>
-<li>Cron is the lingua franca of automation.
-<ul>
-<li>Other utilities will accept Cron syntax.</li>
-</ul></li>
+<li>Cron is the lingua franca of automation. Other tools will accept Cron syntax.</li>
 <li>Very old, widely used and well understood.
 <ul>
 <li>If you are running MacOS or Linux, it’s likely already on your computer.</li>
 </ul></li>
-<li>Minimal and easy to get started with.
-<ul>
-<li>Command line based.</li>
-</ul></li>
+<li>Minimal and easy to get started with.</li>
 </ul>
 <p><br></p>
 <aside class="notes">
@@ -529,18 +523,22 @@
 <p>Cron has it’s own syntax for job frequency and schedule.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a>* * * * *</span>
 <span id="cb1-2"><a href="#cb1-2"></a>| | | | |</span>
-<span id="cb1-3"><a href="#cb1-3"></a>| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>| | | | +---- Day of the Week   (range: 0-6, 0 is Sunday)</span>
 <span id="cb1-4"><a href="#cb1-4"></a>| | | +------ Month of the Year (range: 1-12)</span>
 <span id="cb1-5"><a href="#cb1-5"></a>| | +-------- Day of the Month  (range: 1-31)</span>
 <span id="cb1-6"><a href="#cb1-6"></a>| +---------- Hour              (range: 0-23)</span>
 <span id="cb1-7"><a href="#cb1-7"></a>+------------ Minute            (range: 0-59)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Example<sup>1</sup></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a>0 0 * * * echo 'Hello midnight!'</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="ss">* </span>* * * * Rscript -e 'print("Hello R!")'</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="ss">* </span>* * * * python -c 'print("Hello Python!")'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
+<p>Example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu"># Comment lines start with hastags</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>0 0 * * * echo 'Hello midnight!'</span>
+<span id="cb2-3"><a href="#cb2-3"></a>0 0 1 1 * echo 'Hello New Year!'</span>
+<span id="cb2-4"><a href="#cb2-4"></a>0 0 25 * * echo 'Hello payday!'</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="ss">* </span>* * * * Rscript -e 'print("Hello R!")'</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="ss">* </span>* * * * python -c 'print("Hello Python!")'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br> <br></p>
+
 <aside class="notes">
-<p>I can’t really teach you all of it here.</p>
+<p>This is a simplified version. Cron has a richer syntax than this.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -552,7 +550,9 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>Adapted from: https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/</p></li></ol></aside></section>
+<aside><div>
+<p>Adapted from: <a href="https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/">https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/</a></p>
+</div></aside></section>
 
 <section id="thank-you" class="title-slide slide level1 center" style="text-align: center;">
 <h1>Thank you!</h1>

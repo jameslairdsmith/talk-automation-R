@@ -92,12 +92,10 @@ These each have their pros and cons.
 
 . . .
 
-- Cron is the lingua franca of automation.
-  - Other utilities will accept Cron syntax.
+- Cron is the lingua franca of automation. Other tools will accept Cron syntax.
 - Very old, widely used and well understood.
   - If you are running MacOS or Linux, it's likely already on your computer.
 - Minimal and easy to get started with.
-  - Command line based.
 
 <br>
 
@@ -116,23 +114,31 @@ Cron has it's own syntax for job frequency and schedule.
 ```markdown
 * * * * *
 | | | | |
-| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)
+| | | | +---- Day of the Week   (range: 0-6, 0 is Sunday)
 | | | +------ Month of the Year (range: 1-12)
 | | +-------- Day of the Month  (range: 1-31)
 | +---------- Hour              (range: 0-23)
 +------------ Minute            (range: 0-59)
 ```
-Example^[Adapted from: https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/]
+Example:
 ```markdown
+# Comment lines start with hastags
 0 0 * * * echo 'Hello midnight!'
+0 0 1 1 * echo 'Hello New Year!'
+0 0 25 * * echo 'Hello payday!'
 * * * * * Rscript -e 'print("Hello R!")'
 * * * * * python -c 'print("Hello Python!")'
 ```
 
 <br>
+<br>
+
+::: aside
+Adapted from: [https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/](https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/)
+:::
 
 ::: {.notes}
-I can't really teach you all of it here.
+This is a simplified version. Cron has a richer syntax than this.
 :::
 
 :::{style="text-align: center;"}
