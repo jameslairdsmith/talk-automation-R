@@ -72,6 +72,7 @@ Rather, it interfaces with other purpose-built tools.
 - Windows Task Scheduler
 - RStudio Connect
 - Jenkins
+- Github actions
 - Many more...
 
 **R does have tools for interfacing with these.**
@@ -103,6 +104,8 @@ These each have their pros and cons.
 - Minimal and easy to get started with.
 :::
 
+<br>
+<br>
 <br>
 
 ::: {.notes}
@@ -152,11 +155,11 @@ Adapted from: [https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/](
 This is a simplified version. Cron has a richer syntax than this.
 :::
 
-## Existing tools (R) {.smaller}
+## Existing tools: R {.smaller}
 
 . . .
 
-cronR, origionally by Kevin Ushey, but forked and maintained by Jan Wijffels.
+cronR, origionally by Kevin Ushey, but maintained by Jan Wijffels.
 
 ```{r eval=TRUE, message=TRUE}
 library(cronR)
@@ -175,6 +178,61 @@ cron_add(
 
 ::: {.notes}
 There is something similar for Windows with taskscheduleR, also by Jan Wijffels.
+
+The drawback of this is that it's not friendly to version control.
+
+I know there are people out there who have tried to program around Cron.
+:::
+
+## Existing tools: Apache Airflow
+
+- Perhaps the most mature and well understood automation tool.
+- Started by Airbnb.
+- Structured around Directed Acyclic Graphs (DAGs)
+- GUI capabilities.
+
+![](airflow-image.png)
+
+## Existing tools: Apache Airflow (2)  {.smaller}
+
+
+```{python eval=FALSE, python.reticulate = FALSE}
+from datetime import datetime
+from airflow import DAG
+from airflow.operators.python_operator import PythonOperator
+
+def print_hello():
+    return 'Hello world from first Airflow DAG!'
+
+dag = DAG(
+  'hello_world', 
+  description = 'Hello World DAG',
+  schedule_interval = '0 12 * * *',
+  start_date = datetime(2017, 3, 20), 
+  catchup = False
+)
+
+hello_operator = PythonOperator(task_id='hello_task',
+                                python_callable = print_hello, 
+                                dag = dag)
+```
+
+<br>
+
+::: aside
+Adapted from: [https://progressivecoder.com/airflow-dag-example-create-your-first-dag/](https://progressivecoder.com/airflow-dag-example-create-your-first-dag/)
+:::
+
+::: {.notes}
+Airflow is really the Swiss army knife of automation.
+
+Written in Python. You also write DAGs as Python. 
+
+You can execute R, but you do so as command line.
+:::
+
+:::{style="text-align: center;"}
+# Demo time! 
 :::
 
 :::{style="text-align: center;"}

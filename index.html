@@ -470,6 +470,7 @@
 <li>Windows Task Scheduler</li>
 <li>RStudio Connect</li>
 <li>Jenkins</li>
+<li>Github actions</li>
 <li>Many more…</li>
 </ul>
 <p><strong>R does have tools for interfacing with these.</strong></p>
@@ -508,7 +509,7 @@
 <li class="fragment">Minimal and easy to get started with.</li>
 </ul>
 </div>
-<p><br></p>
+<p><br> <br> <br></p>
 <aside class="notes">
 <p>I think Cron is a good tool to get started with.</p>
 <style type="text/css">
@@ -565,9 +566,9 @@
 </div></aside></section>
 
 <section id="existing-tools-r" class="title-slide slide level2 smaller center">
-<h2>Existing tools (R)</h2>
+<h2>Existing tools: R</h2>
 <div class="fragment">
-<p>cronR, origionally by Kevin Ushey, but forked and maintained by Jan Wijffels.</p>
+<p>cronR, origionally by Kevin Ushey, but maintained by Jan Wijffels.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(cronR)</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
@@ -593,6 +594,8 @@
 </div>
 <aside class="notes">
 <p>There is something similar for Windows with taskscheduleR, also by Jan Wijffels.</p>
+<p>The drawback of this is that it’s not friendly to version control.</p>
+<p>I know there are people out there who have tried to program around Cron.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -605,6 +608,65 @@
           display:block!important;
       }</style></aside>
 </div>
+</section>
+
+<section id="existing-tools-apache-airflow" class="title-slide slide level2 center">
+<h2>Existing tools: Apache Airflow</h2>
+<ul>
+<li>Perhaps the most mature and well understood automation tool.</li>
+<li>Started by Airbnb.</li>
+<li>Structured around Directed Acyclic Graphs (DAGs)</li>
+<li>GUI capabilities.</li>
+</ul>
+
+<img data-src="airflow-image.png" class="r-stretch"></section>
+
+<section id="existing-tools-apache-airflow-2" class="title-slide slide level2 smaller center">
+<h2>Existing tools: Apache Airflow (2)</h2>
+<div class="cell" data-python.reticulate="false">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="im">from</span> airflow <span class="im">import</span> DAG</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="im">from</span> airflow.operators.python_operator <span class="im">import</span> PythonOperator</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="kw">def</span> print_hello():</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="cf">return</span> <span class="st">'Hello world from first Airflow DAG!'</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a>dag <span class="op">=</span> DAG(</span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="st">'hello_world'</span>, </span>
+<span id="cb5-10"><a href="#cb5-10"></a>  description <span class="op">=</span> <span class="st">'Hello World DAG'</span>,</span>
+<span id="cb5-11"><a href="#cb5-11"></a>  schedule_interval <span class="op">=</span> <span class="st">'0 12 * * *'</span>,</span>
+<span id="cb5-12"><a href="#cb5-12"></a>  start_date <span class="op">=</span> datetime(<span class="dv">2017</span>, <span class="dv">3</span>, <span class="dv">20</span>), </span>
+<span id="cb5-13"><a href="#cb5-13"></a>  catchup <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>)</span>
+<span id="cb5-15"><a href="#cb5-15"></a></span>
+<span id="cb5-16"><a href="#cb5-16"></a>hello_operator <span class="op">=</span> PythonOperator(task_id<span class="op">=</span><span class="st">'hello_task'</span>,</span>
+<span id="cb5-17"><a href="#cb5-17"></a>                                python_callable <span class="op">=</span> print_hello, </span>
+<span id="cb5-18"><a href="#cb5-18"></a>                                dag <span class="op">=</span> dag)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+
+<aside class="notes">
+<p>Airflow is really the Swiss army knife of automation.</p>
+<p>Written in Python. You also write DAGs as Python.</p>
+<p>You can execute R, but you do so as command line.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Adapted from: <a href="https://progressivecoder.com/airflow-dag-example-create-your-first-dag/">https://progressivecoder.com/airflow-dag-example-create-your-first-dag/</a></p>
+</div></aside></section>
+
+<section id="demo-time" class="title-slide slide level1 center" style="text-align: center;">
+<h1>Demo time!</h1>
+
 </section>
 
 <section id="thank-you" class="title-slide slide level1 center" style="text-align: center;">
