@@ -103,19 +103,25 @@ Varying levels of maturity and sophistication.
 These each have their pros and cons.
 :::
 
-## What would an ideal automation tool look like? {.smaller}
+
+## What do we want? {.smaller}
+
+What does an ideal automation tool look like?
+
+<br>
 
 - Simple to use.
-- Feature rich.
-  - Triggers (or listeners).
+- Feature rich. Eg. have triggers (or listeners).
   
 . . .
 
-- Strong visualisation.
-- Language agnostic? Or at least work with R?
+- Developer friendly. Eg. Have an API
+- User friendly. Eg. Have a good graphical interface.
+
+. . . 
+
 - Free and open source with no vendor lock-in.
-- Developer friendly.
-  - Have an API.
+- Language agnostic? Or at least work with R?
 
 ## Cron {.smaller}
 
@@ -185,7 +191,7 @@ Adapted from: [https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/](
 This is a simplified version. Cron has a richer syntax than this.
 :::
 
-## Existing tools: cronR {.smaller}
+## cronR {.smaller}
 
 - Origionally by Kevin Ushey, but maintained by Jan Wijffels.
 - Helpers for writing Cron expressions and writing to crontab files.
@@ -218,10 +224,13 @@ The drawback of this is that it's not friendly to version control.
 I know there are people out there who have tried to program around Cron.
 :::
 
-## Existing tools: Apache Airflow {.smaller}
+## Apache Airflow {.smaller}
 
 - Perhaps the most mature and well understood automation tool.
 - Started by Airbnb. Open source and with a community of developers.
+
+## Apache Airflow (2) {.smaller}
+
 - Structured around Directed Acyclic Graphs (DAGs).
 - GUI capabilities.
 
@@ -233,7 +242,7 @@ I know there are people out there who have tried to program around Cron.
 Image source: [https://pypi.org/project/apache-airflow/](https://pypi.org/project/apache-airflow/)
 :::
 
-## Existing tools: Apache Airflow (2)  {.smaller}
+## Apache Airflow (3)  {.smaller}
 
 <br>
 
@@ -289,23 +298,45 @@ You can execute R, but you do so as command line.
   
 ## Existing tools: summary {.smaller}
 
-<br>
 
-|             | Cron | Apache Airflow | Github actions | RStudio Connect |
-|-------------|------|----------------|----------------|-----------------|
-| Easy to use^[Footnote] | &#9989;     |                |                |                 |
-|             | &#10060;     |                |                |                 |
-|             | &#128993;
-     |                |                |                 |
-     
+|                         | Cron                          | Airflow                                                            | GitHub Actions | RStudio Connect                                                 |
+|-------------------------|-------------------------------|--------------------------------------------------------------------|----------------|-----------------------------------------------------------------|
+| Easy to use             | &#9989;                       | &#128993;^[It's quite a lot of setup and you need to know Python.] | &#9989;        | &#9989;                                                         |
+| Trigger and DAG support | &#10060;                      | &#9989;                                                            | &#9989;        | &#10060;                                                        |
+| Good R support          | &#128993;^[We do have cronR.] | &#128993;^[You can use R executables.]                             | &#9989;        | &#9989;&#9989;                                                  |
+| Language agnostic       | &#9989;                       | &#10060;                                                           | &#9989;        | &#10060;                                                        |
+| Has an API              | &#10060;                      | &#9989;                                                            | &#9989;        | &#128993;^[It exists, but I'm not sure of scheduling bindings?] |
+| Nice GUI                | &#10060;                      | &#9989;&#9989;                                                     | &#9989;        | &#9989;                                                         |
+| Free & open source      | &#9989;                       | &#9989;                                                            | &#10060;       | &#10060;                                                        |
+| Not tied to a vendor    | &#9989;                       | &#9989;                                                            | &#10060;       | &#10060;                                                        |
+
 : {tbl-colwidths="[40,15,15,15,15]"}
 
 <br>
 <br>
+<br>
+<br>
 
-:::{style="text-align: center;"}
-# Demo time! 
-:::
+## The future^[...or at least what I think we should do.] {.smaller}
+
+. . . 
+
+Focus on the open source technologies.
+
+<br>
+
+- **Cron for the simpler automations**
+  - Syncronise crontab from a YAML file.
+
+. . .
+
+- **Apache Airflow for the large scale deployments**
+  - R bindings to the API.
+  - Create DAGs in R? Transpile them to Python?
+
+<br>
+<br>
+
 
 :::{style="text-align: center;"}
 # Thank you! 

@@ -499,24 +499,24 @@
       }</style></aside>
 </section>
 
-<section id="what-would-an-ideal-automation-tool-look-like" class="title-slide slide level2 smaller center">
-<h2>What would an ideal automation tool look like?</h2>
+<section id="what-do-we-want" class="title-slide slide level2 smaller center">
+<h2>What do we want?</h2>
+<p>What does an ideal automation tool look like?</p>
+<p><br></p>
 <ul>
 <li>Simple to use.</li>
-<li>Feature rich.
-<ul>
-<li>Triggers (or listeners).</li>
-</ul></li>
+<li>Feature rich. Eg. have triggers (or listeners).</li>
 </ul>
 <div class="fragment">
 <ul>
-<li>Strong visualisation.</li>
-<li>Language agnostic? Or at least work with R?</li>
-<li>Free and open source with no vendor lock-in.</li>
-<li>Developer friendly.
+<li>Developer friendly. Eg. Have an API</li>
+<li>User friendly. Eg. Have a good graphical interface.</li>
+</ul>
+</div>
+<div class="fragment">
 <ul>
-<li>Have an API.</li>
-</ul></li>
+<li>Free and open source with no vendor lock-in.</li>
+<li>Language agnostic? Or at least work with R?</li>
 </ul>
 </div>
 </section>
@@ -601,8 +601,8 @@
 <p>Adapted from: <a href="https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/">https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/</a></p>
 </div></aside></section>
 
-<section id="existing-tools-cronr" class="title-slide slide level2 smaller center">
-<h2>Existing tools: cronR</h2>
+<section id="cronr" class="title-slide slide level2 smaller center">
+<h2>cronR</h2>
 <ul>
 <li>Origionally by Kevin Ushey, but maintained by Jan Wijffels.</li>
 <li>Helpers for writing Cron expressions and writing to crontab files.</li>
@@ -649,11 +649,17 @@
 </div>
 </section>
 
-<section id="existing-tools-apache-airflow" class="title-slide slide level2 smaller center">
-<h2>Existing tools: Apache Airflow</h2>
+<section id="apache-airflow" class="title-slide slide level2 smaller center">
+<h2>Apache Airflow</h2>
 <ul>
 <li>Perhaps the most mature and well understood automation tool.</li>
 <li>Started by Airbnb. Open source and with a community of developers.</li>
+</ul>
+</section>
+
+<section id="apache-airflow-2" class="title-slide slide level2 smaller center">
+<h2>Apache Airflow (2)</h2>
+<ul>
 <li>Structured around Directed Acyclic Graphs (DAGs).</li>
 <li>GUI capabilities.</li>
 </ul>
@@ -665,8 +671,8 @@
 <p>Image source: <a href="https://pypi.org/project/apache-airflow/">https://pypi.org/project/apache-airflow/</a></p>
 </div></aside></section>
 
-<section id="existing-tools-apache-airflow-2" class="title-slide slide level2 smaller center">
-<h2>Existing tools: Apache Airflow (2)</h2>
+<section id="apache-airflow-3" class="title-slide slide level2 smaller center">
+<h2>Apache Airflow (3)</h2>
 <p><br></p>
 <div style="font-size:0.85em">
 <div class="cell" data-python.reticulate="false">
@@ -729,7 +735,6 @@
 
 <section id="existing-tools-summary" class="title-slide slide level2 smaller center">
 <h2>Existing tools: summary</h2>
-<p><br></p>
 <table>
 <colgroup>
 <col style="width: 40%">
@@ -742,49 +747,96 @@
 <tr class="header">
 <th></th>
 <th>Cron</th>
-<th>Apache Airflow</th>
-<th>Github actions</th>
+<th>Airflow</th>
+<th>GitHub Actions</th>
 <th>RStudio Connect</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Easy to use<sup>1</sup></td>
+<td>Easy to use</td>
 <td>✅</td>
-<td></td>
-<td></td>
-<td></td>
+<td>🟡<sup>1</sup></td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="even">
-<td></td>
+<td>Trigger and DAG support</td>
 <td>❌</td>
-<td></td>
-<td></td>
-<td></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>🟡</td>
-<td></td>
-<td></td>
-<td></td>
+<td>Good R support</td>
+<td>🟡<sup>2</sup></td>
+<td>🟡<sup>3</sup></td>
+<td>✅</td>
+<td>✅✅</td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Language agnostic</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>Has an API</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>🟡<sup>4</sup></td>
+</tr>
+<tr class="even">
+<td>Nice GUI</td>
+<td>❌</td>
+<td>✅✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Free &amp; open source</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td>Not tied to a vendor</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
 </tr>
 </tbody>
 </table>
+<p><br> <br> <br> <br></p>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>It’s quite a lot of setup and you need to know Python.</p></li><li id="fn3"><p>We do have cronR.</p></li><li id="fn4"><p>You can use R executables.</p></li><li id="fn5"><p>It exists, but I’m not sure of scheduling bindings?</p></li></ol></aside></section>
+
+<section id="the-future" class="title-slide slide level2 smaller center">
+<h2>The future<sup>1</sup></h2>
+<div class="fragment">
+<p>Focus on the open source technologies.</p>
+<p><br></p>
+<ul>
+<li><strong>Cron for the simpler automations</strong>
+<ul>
+<li>Syncronise crontab from a YAML file.</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>Apache Airflow for the large scale deployments</strong>
+<ul>
+<li>R bindings to the API.</li>
+<li>Create DAGs in R? Transpile them to Python?</li>
+</ul></li>
+</ul>
 <p><br> <br></p>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>Footnote</p></li></ol></aside></section>
-
-<section id="demo-time" class="title-slide slide level1 center" style="text-align: center;">
-<h1>Demo time!</h1>
-
-</section>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn6"><p>…or at least what I think we should do.</p></li></ol></aside></section>
 
 <section id="thank-you" class="title-slide slide level1 center" style="text-align: center;">
 <h1>Thank you!</h1>
