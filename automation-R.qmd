@@ -40,8 +40,8 @@ options(crayon.enabled=TRUE)
 
 ## Agenda
 
-- Value of automation
-- Tools
+- Why learn to automate?
+- What tools are available for automation?
 - The future?
 
 ## Why learn automation? {.smaller}
@@ -70,6 +70,8 @@ Given that you have some operation.
 ::: {.notes}
 I see automation as the logical extension of coding.
 It is particularly important for organisations.
+Because this is a data science conference, we not only care about automating, but
+automating in a data context.
 :::
 
 ## How can you automate? {.smaller}
@@ -106,25 +108,26 @@ These each have their pros and cons.
 - Simple to use.
 - Feature rich.
   - Triggers (or listeners).
+  
+. . .
+
 - Strong visualisation.
 - Language agnostic? Or at least work with R?
 - Free and open source with no vendor lock-in.
 - Developer friendly.
   - Have an API.
 
-
 ## Cron {.smaller}
-
 
 > In the beginning God created the heavens and the earth ... but also the Cron utility for Unix.^[Gospel according to James.]
 
 . . .
 
 ::: {.incremental}
-- Cron is the lingua franca of automation. Other tools will accept Cron syntax.
 - Very old, widely used and well understood.
   - If you are running MacOS or Linux, it's likely already on your computer.
 - Minimal and easy to get started with.
+- Cron syntax is the lingua franca of automation. Other tools will accept it as input.
 :::
 
 <br>
@@ -141,8 +144,6 @@ I think Cron is a good tool to get started with.
 
 Cron has it's own syntax for job frequency and schedule.
 
-
-
 ```markdown
 * * * * *
 | | | | |
@@ -154,8 +155,9 @@ Cron has it's own syntax for job frequency and schedule.
 ```
 . . .
 
-Example:
-```markdown
+<br>
+
+```{.markdown code-line-numbers="|1|2|3|5|6" filename="crontab file"}
 # Comment lines start with hastags
 0 0 * * * echo 'Hello midnight!'
 0 0 1 1 * echo 'Hello New Year!'
@@ -164,7 +166,11 @@ Example:
 * * * * * python -c 'print("Hello Python!")'
 ```
 
-Cron's syntax is richer than this.
+<br>
+
+. . . 
+
+Cron's syntax is richer than this. To learn more you can go to   [crontab.guru](crontab.guru).
 
 
 <br>
@@ -179,26 +185,30 @@ Adapted from: [https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/](
 This is a simplified version. Cron has a richer syntax than this.
 :::
 
-## Existing tools: R {.smaller}
+## Existing tools: cronR {.smaller}
 
-cronR, origionally by Kevin Ushey, but maintained by Jan Wijffels.
+- Origionally by Kevin Ushey, but maintained by Jan Wijffels.
+- Helpers for writing Cron expressions and writing to crontab files.
+
 
 . . .
 
+::: {style="font-size:0.8em"}
+
 ```{r eval=TRUE, message=TRUE}
+#| code-line-numbers: "|5-6"
 library(cronR)
 
 cron_add(
   command = "Rscript -e 'print(\"Hello R!\")'",
-  frequency = 'minutely',
-  id = 'test1',
-  description = 'My Hello R script',
-  tags = c('lab', 'xyz'),
+  frequency = 'daily', 
+  at='7AM',
   dry_run = TRUE,
   ask = FALSE
 )
 ```
 
+:::
 
 ::: {.notes}
 There is something similar for Windows with taskscheduleR, also by Jan Wijffels.
@@ -225,8 +235,12 @@ Image source: [https://pypi.org/project/apache-airflow/](https://pypi.org/projec
 
 ## Existing tools: Apache Airflow (2)  {.smaller}
 
+<br>
+
+::: {style="font-size:0.85em"}
 
 ```{python eval=FALSE, python.reticulate = FALSE}
+#| code-line-numbers: "|1-3|5-6|8-14|16-18"
 from datetime import datetime
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
@@ -247,6 +261,9 @@ hello_operator = PythonOperator(task_id='hello_task',
                                 dag = dag)
 ```
 
+:::
+
+<br>
 <br>
 
 ::: aside
@@ -269,6 +286,22 @@ You can execute R, but you do so as command line.
   - Useful, but seemed clunky.
   - Good at managing R dependencies.
   - Still very GUI based.
+  
+## Existing tools: summary {.smaller}
+
+<br>
+
+|             | Cron | Apache Airflow | Github actions | RStudio Connect |
+|-------------|------|----------------|----------------|-----------------|
+| Easy to use^[Footnote] | &#9989;     |                |                |                 |
+|             | &#10060;     |                |                |                 |
+|             | &#128993;
+     |                |                |                 |
+     
+: {tbl-colwidths="[40,15,15,15,15]"}
+
+<br>
+<br>
 
 :::{style="text-align: center;"}
 # Demo time! 

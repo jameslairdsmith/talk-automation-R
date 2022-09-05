@@ -410,8 +410,8 @@
 <section id="agenda" class="title-slide slide level2 center">
 <h2>Agenda</h2>
 <ul>
-<li>Value of automation</li>
-<li>Tools</li>
+<li>Why learn to automate?</li>
+<li>What tools are available for automation?</li>
 <li>The future?</li>
 </ul>
 </section>
@@ -440,7 +440,7 @@
 <li>Gain: Can then re-run at zero effort <strong>even when you are not there</strong></li>
 </ul>
 <aside class="notes">
-<p>I see automation as the logical extension of coding. It is particularly important for organisations.</p>
+<p>I see automation as the logical extension of coding. It is particularly important for organisations. Because this is a data science conference, we not only care about automating, but automating in a data context.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -507,6 +507,9 @@
 <ul>
 <li>Triggers (or listeners).</li>
 </ul></li>
+</ul>
+<div class="fragment">
+<ul>
 <li>Strong visualisation.</li>
 <li>Language agnostic? Or at least work with R?</li>
 <li>Free and open source with no vendor lock-in.</li>
@@ -515,6 +518,7 @@
 <li>Have an API.</li>
 </ul></li>
 </ul>
+</div>
 </section>
 
 <section id="cron" class="title-slide slide level2 smaller center">
@@ -525,12 +529,12 @@
 <div class="fragment">
 <div>
 <ul>
-<li class="fragment">Cron is the lingua franca of automation. Other tools will accept Cron syntax.</li>
 <li class="fragment">Very old, widely used and well understood.
 <ul>
 <li class="fragment">If you are running MacOS or Linux, it’s likely already on your computer.</li>
 </ul></li>
 <li class="fragment">Minimal and easy to get started with.</li>
+<li class="fragment">Cron syntax is the lingua franca of automation. Other tools will accept it as input.</li>
 </ul>
 </div>
 <p><br> <br> <br></p>
@@ -561,14 +565,22 @@
 <span id="cb1-6"><a href="#cb1-6"></a>| +---------- Hour              (range: 0-23)</span>
 <span id="cb1-7"><a href="#cb1-7"></a>+------------ Minute            (range: 0-59)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<p>Example:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu"># Comment lines start with hastags</span></span>
+<p><br></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>crontab file</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-code-line-numbers="|1|2|3|5|6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu"># Comment lines start with hastags</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>0 0 * * * echo 'Hello midnight!'</span>
 <span id="cb2-3"><a href="#cb2-3"></a>0 0 1 1 * echo 'Hello New Year!'</span>
 <span id="cb2-4"><a href="#cb2-4"></a>0 0 25 * * echo 'Hello payday!'</span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="ss">* </span>* * * * Rscript -e 'print("Hello R!")'</span>
 <span id="cb2-6"><a href="#cb2-6"></a><span class="ss">* </span>* * * * python -c 'print("Hello Python!")'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Cron’s syntax is richer than this.</p>
+</div>
+<p><br></p>
+</div>
+<div class="fragment">
+<p>Cron’s syntax is richer than this. To learn more you can go to <a href="crontab.guru">crontab.guru</a>.</p>
 <p><br> <br> <br></p>
 
 <aside class="notes">
@@ -589,31 +601,34 @@
 <p>Adapted from: <a href="https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/">https://www.maximehuran.fr/en/create-a-cron-job-with-magento-2/</a></p>
 </div></aside></section>
 
-<section id="existing-tools-r" class="title-slide slide level2 smaller center">
-<h2>Existing tools: R</h2>
-<p>cronR, origionally by Kevin Ushey, but maintained by Jan Wijffels.</p>
+<section id="existing-tools-cronr" class="title-slide slide level2 smaller center">
+<h2>Existing tools: cronR</h2>
+<ul>
+<li>Origionally by Kevin Ushey, but maintained by Jan Wijffels.</li>
+<li>Helpers for writing Cron expressions and writing to crontab files.</li>
+</ul>
 <div class="fragment">
+<div style="font-size:0.8em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(cronR)</span>
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|5-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(cronR)</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="fu">cron_add</span>(</span>
 <span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">command =</span> <span class="st">"Rscript -e 'print(</span><span class="sc">\"</span><span class="st">Hello R!</span><span class="sc">\"</span><span class="st">)'"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">frequency =</span> <span class="st">'minutely'</span>,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="at">id =</span> <span class="st">'test1'</span>,</span>
-<span id="cb3-7"><a href="#cb3-7"></a>  <span class="at">description =</span> <span class="st">'My Hello R script'</span>,</span>
-<span id="cb3-8"><a href="#cb3-8"></a>  <span class="at">tags =</span> <span class="fu">c</span>(<span class="st">'lab'</span>, <span class="st">'xyz'</span>),</span>
-<span id="cb3-9"><a href="#cb3-9"></a>  <span class="at">dry_run =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-10"><a href="#cb3-10"></a>  <span class="at">ask =</span> <span class="cn">FALSE</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">frequency =</span> <span class="st">'daily'</span>, </span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="at">at=</span><span class="st">'7AM'</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="at">dry_run =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="at">ask =</span> <span class="cn">FALSE</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Adding cronjob:
 ---------------
 
 ## cronR job
-## id:   test1
-## tags: lab, xyz
-## desc: My Hello R script
-0-59 * * * * Rscript -e 'print("Hello R!")'</code></pre>
+## id:   2d2a128c4688230eb141b52d86f3befa
+## tags: 
+## desc: 
+0 7 * * * Rscript -e 'print("Hello R!")'</code></pre>
+</div>
 </div>
 </div>
 <aside class="notes">
@@ -652,8 +667,10 @@
 
 <section id="existing-tools-apache-airflow-2" class="title-slide slide level2 smaller center">
 <h2>Existing tools: Apache Airflow (2)</h2>
+<p><br></p>
+<div style="font-size:0.85em">
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1-3|5-6|8-14|16-18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="im">from</span> airflow <span class="im">import</span> DAG</span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="im">from</span> airflow.operators.python_operator <span class="im">import</span> PythonOperator</span>
 <span id="cb5-4"><a href="#cb5-4"></a></span>
@@ -672,7 +689,8 @@
 <span id="cb5-17"><a href="#cb5-17"></a>                                python_callable <span class="op">=</span> print_hello, </span>
 <span id="cb5-18"><a href="#cb5-18"></a>                                dag <span class="op">=</span> dag)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
+</div>
+<p><br> <br></p>
 
 <aside class="notes">
 <p>Airflow is really the Swiss army knife of automation.</p>
@@ -708,6 +726,60 @@
 </ul></li>
 </ul>
 </section>
+
+<section id="existing-tools-summary" class="title-slide slide level2 smaller center">
+<h2>Existing tools: summary</h2>
+<p><br></p>
+<table>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Cron</th>
+<th>Apache Airflow</th>
+<th>Github actions</th>
+<th>RStudio Connect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Easy to use<sup>1</sup></td>
+<td>✅</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>❌</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>🟡</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br> <br></p>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Footnote</p></li></ol></aside></section>
 
 <section id="demo-time" class="title-slide slide level1 center" style="text-align: center;">
 <h1>Demo time!</h1>
