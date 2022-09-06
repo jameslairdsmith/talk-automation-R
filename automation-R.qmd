@@ -116,7 +116,7 @@ What does an ideal automation tool look like?
 . . .
 
 - Developer friendly. Eg. Have an API
-- User friendly. Eg. Have a good graphical interface.
+- User friendly. Eg. Have a good graphical interface (GUI.
 
 . . . 
 
@@ -176,7 +176,7 @@ Cron has it's own syntax for job frequency and schedule.
 
 . . . 
 
-Cron's syntax is richer than this. To learn more you can go to   [crontab.guru](crontab.guru).
+Cron's syntax is richer than this. To learn more you can go to   [crontab.guru](crontab.guru) or consult the [spec](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07) here.
 
 
 <br>
@@ -226,20 +226,49 @@ I know there are people out there who have tried to program around Cron.
 
 ## Apache Airflow {.smaller}
 
-- Perhaps the most mature and well understood automation tool.
-- Started by Airbnb. Open source and with a community of developers.
+> Airflow is a platform [...] to programmatically author, schedule and monitor workflows^[https://airflow.apache.org/]
+
+. . .
+
+- Perhaps the most mature and well understood modern automation tool for data.
+- Fully featured and extensible.
+
+. . . 
+
+<hr>
+
+- Started by Airbnb. 
+- Open source and with a community of developers.
+
+. . . 
+
+<hr> 
+
+- Powerful GUI.
+- Notable for it's use of Directed Acyclic Graphs (DAGs).
+
+
+<br>
+
+::: {.notes}
+Strong focus on data engineering.
+:::
 
 ## Apache Airflow (2) {.smaller}
-
-- Structured around Directed Acyclic Graphs (DAGs).
-- GUI capabilities.
 
 :::{style="text-align: center;"}
 ![](airflow-image.png)
 :::
 
+<br>
+
 ::: aside
 Image source: [https://pypi.org/project/apache-airflow/](https://pypi.org/project/apache-airflow/)
+:::
+
+::: {.notes}
+Any set of tasks is going to have dependencies. Without a DAG, you are going
+to have to manage those dependencies manually. This means you are going to have to program your own trigger/sensor.
 :::
 
 ## Apache Airflow (3)  {.smaller}
@@ -280,12 +309,31 @@ Adapted from: [https://progressivecoder.com/airflow-dag-example-create-your-firs
 :::
 
 ::: {.notes}
-Airflow is really the Swiss army knife of automation.
+Airflow is really the industry giant of automation.
 
-Written in Python. You also write DAGs as Python. 
+Written in Python, but deeply intertwined with Python.
 
 You can execute R, but you do so as command line.
 :::
+
+## GitHub Actions {.smaller}
+
+- Widely used as part of package testing (sometimes called CI/CD).
+- Triggers can be repo events (like push and merge) or Cron schedules.
+- Workflows are specified in YAML.
+
+```{.markdown}
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 Job automatically triggered by ${{ github.event_name }}."
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+```
+
+
 
 ## Existing tools: Others
 
@@ -298,11 +346,10 @@ You can execute R, but you do so as command line.
   
 ## Existing tools: summary {.smaller}
 
-
 |                         | Cron                          | Airflow                                                            | GitHub Actions | RStudio Connect                                                 |
 |-------------------------|-------------------------------|--------------------------------------------------------------------|----------------|-----------------------------------------------------------------|
 | Easy to use             | &#9989;                       | &#128993;^[It's quite a lot of setup and you need to know Python.] | &#9989;        | &#9989;                                                         |
-| Trigger and DAG support | &#10060;                      | &#9989;                                                            | &#9989;        | &#10060;                                                        |
+| Trigger and DAG support | &#10060;                      | &#9989;                                                            | &#10060;       | &#10060;                                                        |
 | Good R support          | &#128993;^[We do have cronR.] | &#128993;^[You can use R executables.]                             | &#9989;        | &#9989;&#9989;                                                  |
 | Language agnostic       | &#9989;                       | &#10060;                                                           | &#9989;        | &#10060;                                                        |
 | Has an API              | &#10060;                      | &#9989;                                                            | &#9989;        | &#128993;^[It exists, but I'm not sure of scheduling bindings?] |

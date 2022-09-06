@@ -510,7 +510,7 @@
 <div class="fragment">
 <ul>
 <li>Developer friendly. Eg. Have an API</li>
-<li>User friendly. Eg. Have a good graphical interface.</li>
+<li>User friendly. Eg. Have a good graphical interface (GUI.</li>
 </ul>
 </div>
 <div class="fragment">
@@ -580,7 +580,7 @@
 <p><br></p>
 </div>
 <div class="fragment">
-<p>Cron’s syntax is richer than this. To learn more you can go to <a href="crontab.guru">crontab.guru</a>.</p>
+<p>Cron’s syntax is richer than this. To learn more you can go to <a href="crontab.guru">crontab.guru</a> or consult the <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07">spec</a> here.</p>
 <p><br> <br> <br></p>
 
 <aside class="notes">
@@ -651,22 +651,65 @@
 
 <section id="apache-airflow" class="title-slide slide level2 smaller center">
 <h2>Apache Airflow</h2>
+<blockquote>
+<p>Airflow is a platform […] to programmatically author, schedule and monitor workflows<sup>1</sup></p>
+</blockquote>
+<div class="fragment">
 <ul>
-<li>Perhaps the most mature and well understood automation tool.</li>
-<li>Started by Airbnb. Open source and with a community of developers.</li>
+<li>Perhaps the most mature and well understood modern automation tool for data.</li>
+<li>Fully featured and extensible.</li>
 </ul>
-</section>
+</div>
+<div class="fragment">
+<hr>
+<ul>
+<li>Started by Airbnb.</li>
+<li>Open source and with a community of developers.</li>
+</ul>
+</div>
+<div class="fragment">
+<hr>
+<ul>
+<li>Powerful GUI.</li>
+<li>Notable for it’s use of Directed Acyclic Graphs (DAGs).</li>
+</ul>
+<p><br></p>
+<aside class="notes">
+<p>Strong focus on data engineering.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>https://airflow.apache.org/</p></li></ol></aside></section>
 
 <section id="apache-airflow-2" class="title-slide slide level2 smaller center">
 <h2>Apache Airflow (2)</h2>
-<ul>
-<li>Structured around Directed Acyclic Graphs (DAGs).</li>
-<li>GUI capabilities.</li>
-</ul>
 <div style="text-align: center;">
 <p><img data-src="airflow-image.png"></p>
 </div>
+<p><br></p>
 
+<aside class="notes">
+<p>Any set of tasks is going to have dependencies. Without a DAG, you are going to have to manage those dependencies manually. This means you are going to have to program your own trigger/sensor.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <aside><div>
 <p>Image source: <a href="https://pypi.org/project/apache-airflow/">https://pypi.org/project/apache-airflow/</a></p>
 </div></aside></section>
@@ -699,8 +742,8 @@
 <p><br> <br></p>
 
 <aside class="notes">
-<p>Airflow is really the Swiss army knife of automation.</p>
-<p>Written in Python. You also write DAGs as Python.</p>
+<p>Airflow is really the industry giant of automation.</p>
+<p>Written in Python, but deeply intertwined with Python.</p>
 <p>You can execute R, but you do so as command line.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -716,6 +759,23 @@
 <aside><div>
 <p>Adapted from: <a href="https://progressivecoder.com/airflow-dag-example-create-your-first-dag/">https://progressivecoder.com/airflow-dag-example-create-your-first-dag/</a></p>
 </div></aside></section>
+
+<section id="github-actions" class="title-slide slide level2 smaller center">
+<h2>GitHub Actions</h2>
+<ul>
+<li>Widely used as part of package testing (sometimes called CI/CD).</li>
+<li>Triggers can be repo events (like push and merge) or Cron schedules.</li>
+<li>Workflows are specified in YAML.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="an">name:</span><span class="co"> GitHub Actions Demo</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="an">on:</span><span class="co"> [push]</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="an">jobs:</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  Explore-GitHub-Actions:</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    runs-on: ubuntu-latest</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    steps:</span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="ss">      - </span>run: echo "🎉 Job automatically triggered by ${{ github.event_name }}."</span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="ss">      - </span>run: echo "🍏 This job's status is ${{ job.status }}."</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 
 <section id="existing-tools-others" class="title-slide slide level2 center">
 <h2>Existing tools: Others</h2>
@@ -764,7 +824,7 @@
 <td>Trigger and DAG support</td>
 <td>❌</td>
 <td>✅</td>
-<td>✅</td>
+<td>❌</td>
 <td>❌</td>
 </tr>
 <tr class="odd">
@@ -812,7 +872,7 @@
 </tbody>
 </table>
 <p><br> <br> <br> <br></p>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>It’s quite a lot of setup and you need to know Python.</p></li><li id="fn3"><p>We do have cronR.</p></li><li id="fn4"><p>You can use R executables.</p></li><li id="fn5"><p>It exists, but I’m not sure of scheduling bindings?</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>It’s quite a lot of setup and you need to know Python.</p></li><li id="fn4"><p>We do have cronR.</p></li><li id="fn5"><p>You can use R executables.</p></li><li id="fn6"><p>It exists, but I’m not sure of scheduling bindings?</p></li></ol></aside></section>
 
 <section id="the-future" class="title-slide slide level2 smaller center">
 <h2>The future<sup>1</sup></h2>
@@ -836,7 +896,7 @@
 </ul>
 <p><br> <br></p>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn6"><p>…or at least what I think we should do.</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn7"><p>…or at least what I think we should do.</p></li></ol></aside></section>
 
 <section id="thank-you" class="title-slide slide level1 center" style="text-align: center;">
 <h1>Thank you!</h1>
