@@ -440,7 +440,7 @@
 <li>Gain: Can then re-run at zero effort <strong>even when you are not there</strong></li>
 </ul>
 <aside class="notes">
-<p>I see automation as the logical extension of coding. It is particularly important for organisations. Because this is a data science conference, we not only care about automating, but automating in a data context.</p>
+<p>I see automation as the logical extension of coding. It is particularly important for organisations.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -518,6 +518,20 @@
 <li>Free and open source with no vendor lock-in.</li>
 <li>Language agnostic? Or at least work with R?</li>
 </ul>
+<aside class="notes">
+<p>I want to prime you to think about what you would want out of an automation tool.</p>
+<p>All automation tools will have a way to trigger events on a schedule, only some will allow you to create triggers.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </div>
 </section>
 
@@ -539,7 +553,7 @@
 </div>
 <p><br> <br> <br></p>
 <aside class="notes">
-<p>I think Cron is a good tool to get started with.</p>
+<p>These things make Cron a good tool to get started with.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -762,11 +776,18 @@
 
 <section id="github-actions" class="title-slide slide level2 smaller center">
 <h2>GitHub Actions</h2>
+<div>
 <ul>
-<li>Widely used as part of package testing (sometimes called CI/CD).</li>
-<li>Triggers can be repo events (like push and merge) or Cron schedules.</li>
-<li>Workflows are specified in YAML.</li>
+<li class="fragment">Widely used as part of package testing (sometimes called CI/CD).</li>
+<li class="fragment">Triggers can be repo events (like push and merge) or Cron schedules.</li>
+<li class="fragment">Workflows are specified in YAML.</li>
+<li class="fragment">Good support for R from work done by RStudio:
+<ul>
+<li class="fragment">See: <a href="https://github.com/r-lib/actions">https://github.com/r-lib/actions</a></li>
+</ul></li>
 </ul>
+</div>
+<div class="fragment">
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="an">name:</span><span class="co"> GitHub Actions Demo</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="an">on:</span><span class="co"> [push]</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="an">jobs:</span></span>
@@ -775,21 +796,27 @@
 <span id="cb6-6"><a href="#cb6-6"></a>    steps:</span>
 <span id="cb6-7"><a href="#cb6-7"></a><span class="ss">      - </span>run: echo "🎉 Job automatically triggered by ${{ github.event_name }}."</span>
 <span id="cb6-8"><a href="#cb6-8"></a><span class="ss">      - </span>run: echo "🍏 This job's status is ${{ job.status }}."</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
+<p><br> <br></p>
+
+</div>
+<aside><div>
+<p>There is also GitLab, the free version of which you could run on a Server.</p>
+</div></aside></section>
 
 <section id="existing-tools-others" class="title-slide slide level2 center">
 <h2>Existing tools: Others</h2>
 <ul>
 <li>Windows Task Scheduler
 <ul>
-<li>Seems heavily tied into Windows.</li>
+<li>Heavily tied into Windows.</li>
+<li>Your PC always has to be on.</li>
 </ul></li>
 <li>RStudio Connect
 <ul>
-<li>Useful, but seemed clunky.</li>
 <li>Good at managing R dependencies.</li>
-<li>Still very GUI based.</li>
+<li>Scheduling still very GUI based.</li>
 </ul></li>
+<li>Nothing really has the feature set of Airflow.</li>
 </ul>
 </section>
 
@@ -879,6 +906,8 @@
 <div class="fragment">
 <p>Focus on the open source technologies.</p>
 <p><br></p>
+</div>
+<div class="fragment">
 <ul>
 <li><strong>Cron for the simpler automations</strong>
 <ul>

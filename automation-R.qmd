@@ -70,8 +70,6 @@ Given that you have some operation.
 ::: {.notes}
 I see automation as the logical extension of coding.
 It is particularly important for organisations.
-Because this is a data science conference, we not only care about automating, but
-automating in a data context.
 :::
 
 ## How can you automate? {.smaller}
@@ -123,6 +121,13 @@ What does an ideal automation tool look like?
 - Free and open source with no vendor lock-in.
 - Language agnostic? Or at least work with R?
 
+::: {.notes}
+I want to prime you to think about what you would want out of an automation tool.
+
+All automation tools will have a way to trigger events on a schedule, only 
+some will allow you to create triggers.
+:::
+
 ## Cron {.smaller}
 
 > In the beginning God created the heavens and the earth ... but also the Cron utility for Unix.^[Gospel according to James.]
@@ -141,10 +146,8 @@ What does an ideal automation tool look like?
 <br>
 
 ::: {.notes}
-I think Cron is a good tool to get started with.
+These things make Cron a good tool to get started with.
 :::
-
-
 
 ## Cron expressions {.smaller}
 
@@ -318,9 +321,16 @@ You can execute R, but you do so as command line.
 
 ## GitHub Actions {.smaller}
 
+::: {.incremental}
 - Widely used as part of package testing (sometimes called CI/CD).
 - Triggers can be repo events (like push and merge) or Cron schedules.
 - Workflows are specified in YAML.
+- Good support for R from work done by RStudio: 
+  - See: [https://github.com/r-lib/actions](https://github.com/r-lib/actions)
+:::
+
+. . . 
+
 
 ```{.markdown}
 name: GitHub Actions Demo
@@ -333,16 +343,22 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 ```
 
+<br>
+<br>
 
+::: {.aside}
+There is also GitLab, the free version of which you could run on a Server.
+:::
 
 ## Existing tools: Others
 
 - Windows Task Scheduler 
-  - Seems heavily tied into Windows.
+  - Heavily tied into Windows.
+  - Your PC always has to be on.
 - RStudio Connect
-  - Useful, but seemed clunky.
   - Good at managing R dependencies.
-  - Still very GUI based.
+  - Scheduling still very GUI based.
+- Nothing really has the feature set of Airflow.
   
 ## Existing tools: summary {.smaller}
 
@@ -371,6 +387,8 @@ jobs:
 Focus on the open source technologies.
 
 <br>
+
+. . . 
 
 - **Cron for the simpler automations**
   - Syncronise crontab from a YAML file.
