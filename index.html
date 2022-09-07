@@ -510,7 +510,7 @@
 <div class="fragment">
 <ul>
 <li>Developer friendly. Eg. Have an API</li>
-<li>User friendly. Eg. Have a good graphical interface (GUI.</li>
+<li>User friendly. Eg. Have a good graphical interface (GUI).</li>
 </ul>
 </div>
 <div class="fragment">
@@ -584,18 +584,19 @@
 <div class="code-with-filename-file">
 <pre><strong>crontab file</strong></pre>
 </div>
-<div class="sourceCode" id="cb2" data-code-line-numbers="|1|2|3|5|6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu"># Comment lines start with hastags</span></span>
+<div class="sourceCode" id="cb2" data-code-line-numbers="|1|2|3|5|6|7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu"># Comment lines start with hastags</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>0 0 * * * echo 'Hello midnight!'</span>
 <span id="cb2-3"><a href="#cb2-3"></a>0 0 1 1 * echo 'Hello New Year!'</span>
 <span id="cb2-4"><a href="#cb2-4"></a>0 0 25 * * echo 'Hello payday!'</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="ss">* </span>* * * * Rscript -e 'print("Hello R!")'</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="ss">* </span>* * * * python -c 'print("Hello Python!")'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5"></a>0 0 * * 6 echo 'Hello Saturday!'</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="ss">* </span>* * * * Rscript -e 'print("Hello R!")'</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="ss">* </span>* * * * python -c 'print("Hello Python!")'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 </div>
 <div class="fragment">
 <p>Cron’s syntax is richer than this. To learn more you can go to <a href="crontab.guru">crontab.guru</a> or consult the <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07">spec</a> here.</p>
-<p><br> <br> <br></p>
+<p><br> <br></p>
 
 <aside class="notes">
 <p>This is a simplified version. Cron has a richer syntax than this.</p>
@@ -857,14 +858,14 @@
 <tr class="odd">
 <td>Good R support</td>
 <td>🟡<sup>2</sup></td>
-<td>🟡<sup>3</sup></td>
+<td>❌</td>
 <td>✅</td>
 <td>✅✅</td>
 </tr>
 <tr class="even">
 <td>Language agnostic</td>
 <td>✅</td>
-<td>❌</td>
+<td>🟡<sup>3</sup></td>
 <td>✅</td>
 <td>❌</td>
 </tr>
@@ -899,7 +900,7 @@
 </tbody>
 </table>
 <p><br> <br> <br> <br></p>
-<aside><ol class="aside-footnotes"><li id="fn3"><p>It’s quite a lot of setup and you need to know Python.</p></li><li id="fn4"><p>We do have cronR.</p></li><li id="fn5"><p>You can use R executables.</p></li><li id="fn6"><p>It exists, but I’m not sure of scheduling bindings?</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>It’s quite a lot of setup and you need to know Python.</p></li><li id="fn4"><p>We do have cronR.</p></li><li id="fn5"><p>The API is language agnostic, but you can’t create DAGs with it right now (although this might be changing).</p></li><li id="fn6"><p>It exists, but I’m not sure of scheduling bindings?</p></li></ol></aside></section>
 
 <section id="the-future" class="title-slide slide level2 smaller center">
 <h2>The future<sup>1</sup></h2>

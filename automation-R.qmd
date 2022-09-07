@@ -114,7 +114,7 @@ What does an ideal automation tool look like?
 . . .
 
 - Developer friendly. Eg. Have an API
-- User friendly. Eg. Have a good graphical interface (GUI.
+- User friendly. Eg. Have a good graphical interface (GUI).
 
 . . . 
 
@@ -166,11 +166,12 @@ Cron has it's own syntax for job frequency and schedule.
 
 <br>
 
-```{.markdown code-line-numbers="|1|2|3|5|6" filename="crontab file"}
+```{.markdown code-line-numbers="|1|2|3|5|6|7" filename="crontab file"}
 # Comment lines start with hastags
 0 0 * * * echo 'Hello midnight!'
 0 0 1 1 * echo 'Hello New Year!'
 0 0 25 * * echo 'Hello payday!'
+0 0 * * 6 echo 'Hello Saturday!'
 * * * * * Rscript -e 'print("Hello R!")'
 * * * * * python -c 'print("Hello Python!")'
 ```
@@ -182,7 +183,6 @@ Cron has it's own syntax for job frequency and schedule.
 Cron's syntax is richer than this. To learn more you can go to   [crontab.guru](crontab.guru) or consult the [spec](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07) here.
 
 
-<br>
 <br>
 <br>
 
@@ -362,16 +362,16 @@ There is also GitLab, the free version of which you could run on a Server.
   
 ## Existing tools: summary {.smaller}
 
-|                         | Cron                          | Airflow                                                            | GitHub Actions | RStudio Connect                                                 |
-|-------------------------|-------------------------------|--------------------------------------------------------------------|----------------|-----------------------------------------------------------------|
-| Easy to use             | &#9989;                       | &#128993;^[It's quite a lot of setup and you need to know Python.] | &#9989;        | &#9989;                                                         |
-| Trigger and DAG support | &#10060;                      | &#9989;                                                            | &#10060;       | &#10060;                                                        |
-| Good R support          | &#128993;^[We do have cronR.] | &#128993;^[You can use R executables.]                             | &#9989;        | &#9989;&#9989;                                                  |
-| Language agnostic       | &#9989;                       | &#10060;                                                           | &#9989;        | &#10060;                                                        |
-| Has an API              | &#10060;                      | &#9989;                                                            | &#9989;        | &#128993;^[It exists, but I'm not sure of scheduling bindings?] |
-| Nice GUI                | &#10060;                      | &#9989;&#9989;                                                     | &#9989;        | &#9989;                                                         |
-| Free & open source      | &#9989;                       | &#9989;                                                            | &#10060;       | &#10060;                                                        |
-| Not tied to a vendor    | &#9989;                       | &#9989;                                                            | &#10060;       | &#10060;                                                        |
+|                         | Cron                          | Airflow                                                                                                                  | GitHub Actions | RStudio Connect                                                 |
+|-------------------------|-------------------------------|--------------------------------------------------------------------------------------------------------------------------|----------------|-----------------------------------------------------------------|
+| Easy to use             | &#9989;                       | &#128993;^[It's quite a lot of setup and you need to know Python.]                                                       | &#9989;        | &#9989;                                                         |
+| Trigger and DAG support | &#10060;                      | &#9989;                                                                                                                  | &#10060;       | &#10060;                                                        |
+| Good R support          | &#128993;^[We do have cronR.] | &#10060;                                                                                                                 | &#9989;        | &#9989;&#9989;                                                  |
+| Language agnostic       | &#9989;                       | &#128993;^[The API is language agnostic, but you can't create DAGs with it right now (although this might be changing).] | &#9989;        | &#10060;                                                        |
+| Has an API              | &#10060;                      | &#9989;                                                                                                                  | &#9989;        | &#128993;^[It exists, but I'm not sure of scheduling bindings?] |
+| Nice GUI                | &#10060;                      | &#9989;&#9989;                                                                                                           | &#9989;        | &#9989;                                                         |
+| Free & open source      | &#9989;                       | &#9989;                                                                                                                  | &#10060;       | &#10060;                                                        |
+| Not tied to a vendor    | &#9989;                       | &#9989;                                                                                                                  | &#10060;       | &#10060;                                                        |
 
 : {tbl-colwidths="[40,15,15,15,15]"}
 
