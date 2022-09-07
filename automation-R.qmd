@@ -196,7 +196,7 @@ This is a simplified version. Cron has a richer syntax than this.
 
 ## cronR {.smaller}
 
-- Origionally by Kevin Ushey, but maintained by Jan Wijffels.
+- Originally by Kevin Ushey, but maintained by Jan Wijffels.
 - Helpers for writing Cron expressions and writing to crontab files.
 
 
@@ -391,7 +391,7 @@ Focus on the open source technologies.
 . . . 
 
 - **Cron for the simpler automations**
-  - Syncronise crontab from a YAML file.
+  - Synchronise crontab from a YAML file.
 
 . . .
 
